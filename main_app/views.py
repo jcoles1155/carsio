@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import CarPost
 
 
 class Car:  # Note that parens are optional if not inheriting from another class
@@ -16,7 +18,6 @@ cars = [
 ]
 
 # Create your views here.
-from django.http import HttpResponse
 
 def home(request):
     return render(request, 'home.html')
@@ -26,4 +27,5 @@ def about(request):
 
 # route for cars index
 def cars_index(request):
+    cars = CarPost.objects.all()
     return render(request, 'cars/index.html', { 'cars': cars })
