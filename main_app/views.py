@@ -4,13 +4,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import CarPost
 
 
-class Car:  # Note that parens are optional if not inheriting from another class
-    def __init__(self, manufacturer, year, carModel, color, body, isAvailable):
-        self.manufacturer = manufacturer
-        self.year = year
-        self.carModel = carModel
-        self.color = color
-        self.body = body
+# class Car:  # Note that parens are optional if not inheriting from another class
+#     def __init__(self, manufacturer, year, carModel, color, body, isAvailable):
+#         self.manufacturer = manufacturer
+#         self.year = year
+#         self.carModel = carModel
+#         self.color = color
+#         self.body = body
 
 # cars = [
 #     Car('Ford', '2011', 'F150', 'Grey', 'Crew Cab', True),
