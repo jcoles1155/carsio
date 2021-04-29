@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import CarPost
 
 
@@ -11,11 +12,11 @@ class Car:  # Note that parens are optional if not inheriting from another class
         self.color = color
         self.body = body
 
-cars = [
-    Car('Ford', '2011', 'F150', 'Grey', 'Crew Cab', True),
-    Car('Toyota', '2016', 'Tundra', 'Cobalt', 'Super Cab', True),
-    Car('Mercedes', '2017', 'S-Class', 'Blue',  'Coupe', False)
-]
+# cars = [
+#     Car('Ford', '2011', 'F150', 'Grey', 'Crew Cab', True),
+#     Car('Toyota', '2016', 'Tundra', 'Cobalt', 'Super Cab', True),
+#     Car('Mercedes', '2017', 'S-Class', 'Blue',  'Coupe', False)
+# ]
 
 # Create your views here.
 
@@ -33,3 +34,16 @@ def cars_index(request):
 def cars_detail(request, car_id):
     car = CarPost.objects.get(id=car_id)
     return render(request, 'cars/detail.html', { 'car': car })
+
+class CarCreate(CreateView):
+    model = CarPost
+    fields = '__all__'
+    success_url = '/cars/'
+
+class CarUpdate(UpdateView):
+    model = CarPost
+    fields = ['title', 'make', 'carModel', 'color', 'year', 'body', 'description']
+
+class CarDelete(DeleteView):
+    model = CarPost
+    success_url = '/cars/'
